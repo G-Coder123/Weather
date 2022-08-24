@@ -1,1 +1,1 @@
-this project gives you curretn weather info
+this project gives you current weather info
