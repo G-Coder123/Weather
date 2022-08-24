@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+
+</head>
+<body>
+
+    <h1>Welcome</h1>
+    <form method="POST">
+        {% csrf_token %}
+        <input name="city" type="text" placeholder="Add here">
+        <input value="Add city" type="submit" >
+    </form>
+        {% for info in data %}
+        <div class="box">
+            <div class="small_box">
+                <img src="http://openweathermap.org/img/w/{{info.icon}}.png" alt="Italian Trulli">
+            </div>
+            <div class="bigger_box">
+                <h2>{{info.name}}</h2><br>
+                <h3>{{info.temperature}} °C </h3><br>
+                <p>{{info.description}}</p><br>
+            </div>
+            <form method="POST" action="{% url 'delete' info.pk %}">
+                {% csrf_token %}
+                <input value="Delete" type="submit">
+                </form>
+
+
+        </div>
+        {% endfor %}
+
+</body>
+</html>
